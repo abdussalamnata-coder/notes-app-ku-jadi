@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:notes_app_ku/features/notes/data/notes_repository.dart';
+import 'package:notes_app_ku/features/notes/presentation/pages/add_note_page.dart';
 import 'package:notes_app_ku/features/notes/presentation/widgets/notes_tile.dart';
 
 class HomePage extends ConsumerWidget {
@@ -20,14 +21,28 @@ class HomePage extends ConsumerWidget {
           return NotesTile(listNotes: data);
         },
         error: (error, stackTrace) {
-          return Text('sedang error di E');
+          return Center(child: Text('Gagal memuat catatan: $error'));
         },
         loading: () {
           return Padding(
-            padding: EdgeInsetsGeometry.all(10),
+            padding: EdgeInsets.all(10),
             child: LinearProgressIndicator(),
           );
         },
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return AddNotePage();
+              },
+            ),
+          );
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
