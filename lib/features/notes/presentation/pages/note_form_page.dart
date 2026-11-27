@@ -1,16 +1,28 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:notes_app_ku/core/database/tables/notes_table.dart';
 
-class AddNotePage extends StatefulWidget {
-  const AddNotePage({super.key});
+class NoteFromPage extends StatefulWidget {
+  const NoteFromPage({super.key, this.oldNote});
+  final NotesTable? oldNote;
 
   @override
-  State<AddNotePage> createState() => _AddNotePageState();
+  State<NoteFromPage> createState() => _NoteFromPageState();
 }
 
-class _AddNotePageState extends State<AddNotePage> {
+class _NoteFromPageState extends State<NoteFromPage> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
   final _fromKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.oldNote != null) {
+      titleController.text = widget.oldNote!.title.toString();
+      contentController.text = widget.oldNote!.content.toString();
+    }
+  }
+
   @override
   void dispose() {
     titleController.dispose();

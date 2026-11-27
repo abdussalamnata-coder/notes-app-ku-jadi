@@ -1,3 +1,14 @@
-String? validator(String? value) {
-  return 'Judul harus di isi yaa jangan di lewat kan ';
-}
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:notes_app_ku/core/database/app_database.dart';
+import 'package:notes_app_ku/core/database/dabase_provider.dart';
+import 'package:notes_app_ku/features/notes/data/notes_repository.dart';
+
+final notesRepositoryProvider = Provider<NotesRepository>((ref) {
+  final database = ref.watch(databaseProvider);
+  return NotesRepository(database);
+});
+
+final notesStreamProvider = StreamProvider<List<NotesTableData>>((ref) {
+  final repository = ref.watch(notesRepositoryProvider);
+  return repository.watchAllNotes();
+});

@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
-import 'package:notes_app_ku/features/notes/data/notes_repository.dart';
-import 'package:notes_app_ku/features/notes/presentation/pages/add_note_page.dart';
+import 'package:notes_app_ku/features/notes/logic/notes_provider.dart';
+import 'package:notes_app_ku/features/notes/presentation/pages/note_form_page.dart';
 import 'package:notes_app_ku/features/notes/presentation/widgets/notes_tile.dart';
 
 class HomePage extends ConsumerWidget {
@@ -37,7 +37,7 @@ class HomePage extends ConsumerWidget {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return AddNotePage();
+                return NoteFromPage();
               },
             ),
           );
