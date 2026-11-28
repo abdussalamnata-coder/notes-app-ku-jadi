@@ -1,15 +1,16 @@
 import 'package:material_ui/material_ui.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes_app_ku/core/database/tables/notes_table.dart';
 
-class NoteFromPage extends StatefulWidget {
+class NoteFromPage extends ConsumerStatefulWidget {
   const NoteFromPage({super.key, this.oldNote});
   final NotesTable? oldNote;
 
   @override
-  State<NoteFromPage> createState() => _NoteFromPageState();
+  ConsumerState<NoteFromPage> createState() => _NoteFromPageState();
 }
 
-class _NoteFromPageState extends State<NoteFromPage> {
+class _NoteFromPageState extends ConsumerState<NoteFromPage> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController contentController = TextEditingController();
   final _fromKey = GlobalKey<FormState>();
